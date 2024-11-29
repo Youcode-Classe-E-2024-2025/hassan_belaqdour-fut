@@ -82,3 +82,21 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   let selected = null ;
+  positionButtons.forEach((button) => {
+    
+    button.addEventListener("click", () => {
+      selected = button.getAttribute("data-num"); // récupère la valeur de data-num
+      console.log(selected);
+      const position = button.id;
+      const filteredPlayers = listeP.filter(
+        (player) => player.position === position
+      );
+      renderPlayers(filteredPlayers, position);
+      playersModal.classList.remove("hidden");
+    });
+  });
+
+  // Close the modal
+  closePlayersModal.addEventListener("click", () => {
+    playersModal.classList.add("hidden");
+  });
