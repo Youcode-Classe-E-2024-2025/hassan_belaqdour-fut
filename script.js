@@ -27,3 +27,31 @@ document.addEventListener("DOMContentLoaded", () => {
   closeModal.addEventListener("click", () => {
     playerModal.classList.add("hidden");
   });
+  // Handle form submission
+  playerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const playerData = {
+      name: document.getElementById("name").value,
+      photo: document.getElementById("photo").value,
+      position: document.getElementById("position").value,
+      flag: document.getElementById("flag").value,
+      logo: document.getElementById("logo").value,
+      rating: parseInt(document.getElementById("rating").value, 10),
+      pace: parseInt(document.getElementById("pace").value, 10),
+      shooting: parseInt(document.getElementById("shooting").value, 10),
+      passing: parseInt(document.getElementById("passing").value, 10),
+      dribbling: parseInt(document.getElementById("dribbling").value, 10),
+      defending: parseInt(document.getElementById("defending").value, 10),
+      physical: parseInt(document.getElementById("physical").value, 10),
+    };
+
+    // Add the player data to local storage
+    listeP.push(playerData);
+    localStorage.setItem("players", JSON.stringify(listeP));
+
+    alert("Player data saved successfully!");
+
+    // Hide the modal
+    playerModal.classList.add("hidden");
+  });
