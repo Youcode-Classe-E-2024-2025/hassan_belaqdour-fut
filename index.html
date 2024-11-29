@@ -107,6 +107,7 @@
             </button>
           </div>
         </div>
+
         <!-- image de terrunfoot -->
         <img
           class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10"
@@ -114,6 +115,7 @@
           alt="terrunfoot"
         />
       </div>
+
       <!-- place de selection de tachkila  -->
       <div class="bg-black w-1/4 content-end">
         <div class="flex flex-col align-bottom m-10 gap-4">
@@ -135,6 +137,7 @@
               Ajouter un joueur
             </button>
           </div>
+
           <!-- Modal de l'ajoute des joueur -->
           <div
             id="playerModal"
@@ -156,7 +159,141 @@
                     required
                   />
                 </div>
-                <!-- Champs du formulaire -->
+                <div class="mb-3">
+                  <label for="photo" class="block text-sm font-medium"
+                    >photo URL</label
+                  >
+                  <input
+                    type="url"
+                    id="photo"
+                    class="w-full border rounded px-3 py-2"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="position" class="block text-sm font-medium"
+                    >position</label
+                  >
+                  <input
+                    type="text"
+                    id="position"
+                    class="w-full border rounded px-3 py-2"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="flag" class="block text-sm font-medium"
+                    >flag URL</label
+                  >
+                  <input
+                    type="url"
+                    id="flag"
+                    class="w-full border rounded px-3 py-2"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="logo" class="block text-sm font-medium"
+                    >logo club URL</label
+                  >
+                  <input
+                    type="url"
+                    id="logo"
+                    class="w-full border rounded px-3 py-2"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="rating" class="block text-sm font-medium"
+                    >rating</label
+                  >
+                  <input
+                    type="number"
+                    id="rating"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="pace" class="block text-sm font-medium"
+                    >pace</label
+                  >
+                  <input
+                    type="number"
+                    id="pace"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="shooting" class="block text-sm font-medium"
+                    >shooting</label
+                  >
+                  <input
+                    type="number"
+                    id="shooting"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="passing" class="block text-sm font-medium"
+                    >passing</label
+                  >
+                  <input
+                    type="number"
+                    id="passing"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="dribbling" class="block text-sm font-medium"
+                    >dribbling</label
+                  >
+                  <input
+                    type="number"
+                    id="dribbling"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="defending" class="block text-sm font-medium"
+                    >defending</label
+                  >
+                  <input
+                    type="number"
+                    id="defending"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="physical" class="block text-sm font-medium"
+                    >physical</label
+                  >
+                  <input
+                    type="number"
+                    id="physical"
+                    class="w-full border rounded px-3 py-2"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
                 <div class="flex justify-end">
                   <button
                     type="button"
@@ -177,16 +314,23 @@
           </div>
         </div>
       </div>
+    </div>
+
     <!-- modal pour les joueur existant -->
     <!-- Modal -->
   <div id="playersModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
     <div class="bg-white w-full max-w-4xl p-5 rounded-lg relative overflow-y-auto max-h-screen">
       <button id="closePlayersModal" class="absolute top-3 right-3 text-black text-xl">&times;</button>
-      <h2 class="text-center text-2xl font-bold">Joueurs Disponibles</h2>
-      <div id="playersList" class="mt-5">
-        <!-- Contenu généré dynamiquement -->
+      <h2 class="text-lg font-bold mb-4 text-center">All Players</h2>
+      <button id="downloadButton">Download Players Data as JSON</button>
+      <div id="playersContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Player cards will be dynamically rendered here -->
       </div>
     </div>
   </div>
+    
+
+    <script src="/script.js"></script>
+   
   </body>
 </html>
