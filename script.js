@@ -71,3 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
     URL.revokeObjectURL(url);
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const playersModal = document.getElementById("playersModal");
+  const closePlayersModal = document.getElementById("closePlayersModal");
+  const playersContainer = document.getElementById("playersContainer");
+
+  // Add event listeners to all buttons (GK, LB, CB, etc.)
+  const positionButtons = document.querySelectorAll(
+    "button[id='GK'], button[id='LB'], button[id='CB'], button[id='RB'], button[id='CM'], button[id='CF'], button[id='LWF'], button[id='RWF']"
+  );
+
+  let selected = null ;
