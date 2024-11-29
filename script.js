@@ -55,3 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hide the modal
     playerModal.classList.add("hidden");
   });
+  // Create a downloadable JSON file of player data
+  downloadButton.addEventListener("click", () => {
+    const dataStr = JSON.stringify(players, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    // Create a link to trigger the download
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "data.json"; // Set the file name
+    a.click();
+
+    // Clean up the URL object
+    URL.revokeObjectURL(url);
+  });
+});
