@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .hoverfx {
+        @apply transition-all duration-300 hover:scale-115;
+    }
+}
