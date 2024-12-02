@@ -35,7 +35,7 @@
             </button>
           </div>
           <div class="col-start-5 row-start-7 hoverfx" >
-            <button class="scale-75" id="CB" data-num="3">
+            <button class="scale-75" id="CBR" data-num="3">
               <div
                 class="bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2"
                 id="card"
@@ -43,7 +43,7 @@
             </button>
           </div>
           <div class="col-start-7 row-start-7 hoverfx">
-            <button class="scale-75" id="CB" data-num="4">
+            <button class="scale-75" id="CBL" data-num="4">
               <div
                 class="bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2"
                 id="card"
@@ -67,7 +67,7 @@
             </button>
           </div>
           <div class="col-start-6 row-start-5 hoverfx">
-            <button class="scale-75" id="CM" data-num="7">
+            <button class="scale-75" id="CMR" data-num="7">
               <div
                 class="bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2"
                 id="card"
@@ -75,7 +75,7 @@
             </button>
           </div>
           <div class="col-start-4 row-start-4 hoverfx" >
-            <button class="scale-75" id="CM" data-num="8">
+            <button class="scale-75" id="CML" data-num="8">
               <div
                 class="bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2"
                 id="card"
@@ -116,19 +116,11 @@
         />
       </div>
 
+      
       <!-- place de selection de tachkila  -->
-      <div class="bg-black w-1/4 content-end">
+      <div class="bg-black w-1/4">
         <div class="flex flex-col align-bottom m-10 gap-4">
-          <select
-            name=""
-            id=""
-            class="w-80 h-12 rounded-lg text-center text-black bg-slate-50"
-          >
-            <option value="4-3-3">4-3-3</option>
-            <option value="4-1-4-1">4-1-4-1</option>
-            <option value="4-2-3-1">4-2-3-1</option>
-            <option value="4-4-2">4-4-2</option>
-          </select>
+          <div class="bg-white"> </div>
           <div class="text-center mt-10">
             <button
               id="openModal"
@@ -306,6 +298,7 @@
                     type="submit"
                     class="px-4 py-2 bg-blue-500 text-white rounded"
                   >
+                 
                     ajouter
                   </button>
                 </div>
@@ -321,8 +314,6 @@
   <div id="playersModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
     <div class="bg-white w-full max-w-4xl p-5 rounded-lg relative overflow-y-auto max-h-screen">
       <button id="closePlayersModal" class="absolute top-3 right-3 text-black text-xl">&times;</button>
-      <h2 class="text-lg font-bold mb-4 text-center">All Players</h2>
-      <button id="downloadButton">Download Players Data as JSON</button>
       <div id="playersContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Player cards will be dynamically rendered here -->
       </div>
