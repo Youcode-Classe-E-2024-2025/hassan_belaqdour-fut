@@ -1,46 +1,4 @@
-
-
-// function displayPlayer(card, player) {
-//   card.innerHTML = `
-//   <div class="flex items-center space-x-4">
-//           <img src="${player.photo}" alt="${player.name}" class="w-16 h-16 rounded-full object-cover">
-//           <div>
-//             <h3 class="font-bold text-lg">${player.name}</h3>
-//             <p class="text-sm text-gray-500">${player.position} - ${player.club}</p>
-//           </div>
-//         </div>
-//         <div class="mt-3">
-//           <img src="${player.flag}" alt="${player.nationality}" class="w-8 h-5 inline-block">
-//           <span class="text-sm font-medium text-gray-700">${player.nationality}</span>
-//         </div>
-//         <ul class="mt-2 grid grid-cols-2 gap-2 text-sm">
-//           <li><strong>Rating:</strong> ${player.rating}</li>
-//           <li><strong>Pace:</strong> ${player.pace}</li>
-//           <li><strong>Shooting:</strong> ${player.shooting}</li>
-//           <li><strong>Passing:</strong> ${player.passing}</li>
-//           <li><strong>Dribbling:</strong> ${player.dribbling}</li>
-//           <li><strong>Defending:</strong> ${player.defending}</li>
-//           <li><strong>Physical:</strong> ${player.physical}</li>
-//         </ul>
-//   `;
-// }
-
-
-
-// function removeDiv(button) {
-//   // Find the parent element of the button (the div) and remove it
-//   const parentDiv = button.parentElement;
-//   if (parentDiv) {
-//     parentDiv.remove();
-//   }
-// }
-
-
-
-
-
-
-// --------------------------- Initialisation et Récupération des données ---------------------------
+// --------------------------- recupuration des donnees json ---------------------------
 let listeP = [];
 
 fetch("./src/data.json")
@@ -56,24 +14,24 @@ fetch("./src/data.json")
 
 let players = JSON.parse(localStorage.getItem("players")) || [];
 
-// --------------------------- Gestion du Modal pour Ajouter un Joueur ---------------------------
+// --------------------------- ajout un nouveau joureur ---------------------------
 document.addEventListener("DOMContentLoaded", () => {
   const openModal = document.getElementById("openModal");
   const closeModal = document.getElementById("closeModal");
   const playerModal = document.getElementById("playerModal");
   const playerForm = document.getElementById("playerForm");
 
-  // Ouvrir le modal
+  // ouvrir le modal
   openModal.addEventListener("click", () => {
     playerModal.classList.remove("hidden");
   });
 
-  // Fermer le modal
+  // fermer le modal
   closeModal.addEventListener("click", () => {
     playerModal.classList.add("hidden");
   });
 
-  // Gestion de l'ajout d'un joueur via le formulaire
+  // gestion de l'ajout d'un joueur par la form
   playerForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -92,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       physical: parseInt(document.getElementById("physical").value, 10),
     };
 
-    // Ajouter le joueur dans la liste et sauvegarder dans localStorage
+    // ajouter le joueur dans la liste et sauvegarder dans localStorage
     listeP.push(playerData);
     localStorage.setItem("players", JSON.stringify(listeP));
 
@@ -103,13 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --------------------------- Gestion des Joueurs par Position ---------------------------
+// --------------------------- gestion des joueurs par position ---------------------------
 document.addEventListener("DOMContentLoaded", () => {
   const playersModal = document.getElementById("playersModal");
   const closePlayersModal = document.getElementById("closePlayersModal");
   const playersContainer = document.getElementById("playersContainer");
 
-  // Gestion des boutons de position (GK, LB, CB, etc.)
+  // gestion des boutons de position
   const positionButtons = document.querySelectorAll(
     "button[id='GK'], button[id='LB'], button[id='CBL'], button[id='CBR'], button[id='RB'], button[id='CM'], button[id='CML'], button[id='CMR'], button[id='CF'], button[id='LWF'], button[id='RWF']"
   );
@@ -128,14 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Fermer le modal des joueurs
+  // fermer le modal des joueurs
   closePlayersModal.addEventListener("click", () => {
     playersModal.classList.add("hidden");
   });
 
-  // Fonction pour afficher les joueurs dans le modal
+  // fonction pour afficher les joueurs dans le modal
   function renderPlayers(players, position) {
-    playersContainer.innerHTML = ""; // Vider le contenu existant
+    playersContainer.innerHTML = ""; // vider le contenu existant
 
     players.forEach((player) => {
       const playerCard = document.createElement("div");
@@ -165,21 +123,20 @@ document.addEventListener("DOMContentLoaded", () => {
         </ul>
         <div class="flex flex-row justify-between mt-3">
           <button class="bg-red-600 rounded-lg p-2 removeButton">remove</button>
-          <button class="bg-green-500 rounded-lg p-2">update</button>
+          <button class="bg-green-500 rounded-lg p-2 updateButton" onclick="openForm(${player.id})">update</button>
         </div>
       `;
 
-      // Attacher l'événement de suppression au bouton 'remove'
+      //----------------------------------------------------------suppression pour le bouton remove
       const removeButton = playerCard.querySelector(".removeButton");
       removeButton.addEventListener("click", function (event) {
-        event.stopPropagation(); // Empêche la propagation de l'événement
-        playerCard.remove(); // Supprime la carte du joueur (le div parent)
+        event.stopPropagation();
+        playerCard.remove();
 
-        // Supprimer le joueur de la liste et mettre à jour localStorage
+        // Supprimer le joueur de la liste et mettre jour localStorage
         listeP = listeP.filter((item) => item.name !== player.name);
         localStorage.setItem("players", JSON.stringify(listeP));
       });
-
 
       playerCard.addEventListener("click", function () {
         let res = listeP.find((item) => item == player.name);
@@ -263,3 +220,72 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+function openForm(id) {
+  const player = listeP.find((player) => player.id == id);
+  console.log(id, player);
+  
+  // open edit form
+  const playerModal = document.getElementById("playerModal");
+  playerModal.classList.remove("hidden");
+  // close players list
+  const playersModal = document.getElementById("playersModal");
+  playersModal.classList.add("hidden");
+  // // fill the form inputs
+  document.getElementById("name").value = player.name;
+  document.getElementById("photo").value = player.photo;
+  document.getElementById("position").value = player.position;
+  document.getElementById("flag").value = player.flag;
+  document.getElementById("logo").value = player.logo;
+  document.getElementById("rating").value = player.rating;
+  document.getElementById("pace").value = player.pace;
+  document.getElementById("shooting").value = player.shooting;
+  document.getElementById("passing").value = player.passing;
+  document.getElementById("dribbling").value = player.dribbling;
+  document.getElementById("defending").value = player.defending;
+  document.getElementById("physical").value = player.physical;
+}
+
+
+
+// const handleUpdate = (player) => {
+//   // Pre-fill the modal form with player's existing data
+
+//   // Open the modal
+//   const playerModal = document.getElementById("playerModal");
+//   playerModal.classList.remove("hidden");
+
+//   // Update the player's data on form submission
+//   const playerForm = document.getElementById("playerForm");
+//   playerForm.onsubmit = (event) => {
+//     event.preventDefault();
+
+//     // Update the player's data in listeP
+//     const updatedPlayer = {
+//       name: document.getElementById("name").value,
+//       photo: document.getElementById("photo").value,
+//       position: document.getElementById("position").value,
+//       flag: document.getElementById("flag").value,
+//       logo: document.getElementById("logo").value,
+//       rating: parseInt(document.getElementById("rating").value, 10),
+//       pace: parseInt(document.getElementById("pace").value, 10),
+//       shooting: parseInt(document.getElementById("shooting").value, 10),
+//       passing: parseInt(document.getElementById("passing").value, 10),
+//       dribbling: parseInt(document.getElementById("dribbling").value, 10),
+//       defending: parseInt(document.getElementById("defending").value, 10),
+//       physical: parseInt(document.getElementById("physical").value, 10),
+//     };
+
+//     // Replace the old player data with the updated data
+//     const playerIndex = listeP.findIndex((p) => p.name === player.name);
+//     if (playerIndex !== -1) {
+//       listeP[playerIndex] = updatedPlayer;
+//     }
+
+//     // Save the updated list to localStorage
+//     localStorage.setItem("players", JSON.stringify(listeP));
+
+//     alert("Player data updated successfully!");
+//     playerModal.classList.add("hidden");
+//   };
+// };
