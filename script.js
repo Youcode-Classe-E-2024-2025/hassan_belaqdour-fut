@@ -214,39 +214,72 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 `;
         button.appendChild(newDiv);
+        // // close players list
+        const playersModal = document.getElementById("playersModal");
+        playersModal.classList.add("hidden");
       });
 
       playersContainer.appendChild(playerCard);
     });
+   
   }
 });
 
 function openForm(id) {
-  const player = listeP.find((player) => player.id == id);
-  console.log(id, player);
-  
+  const playerIndex = listeP.findIndex((player) => player.id == id);
+  const player = listeP[playerIndex];
+  console.log(listeP);
+
   // open edit form
-  const playerModal = document.getElementById("playerModal");
-  playerModal.classList.remove("hidden");
-  // close players list
+  const editplayerModal = document.getElementById("editplayerModal");
+  editplayerModal.classList.remove("hidden");
+  // // close players list
   const playersModal = document.getElementById("playersModal");
   playersModal.classList.add("hidden");
   // // fill the form inputs
-  document.getElementById("name").value = player.name;
-  document.getElementById("photo").value = player.photo;
-  document.getElementById("position").value = player.position;
-  document.getElementById("flag").value = player.flag;
-  document.getElementById("logo").value = player.logo;
-  document.getElementById("rating").value = player.rating;
-  document.getElementById("pace").value = player.pace;
-  document.getElementById("shooting").value = player.shooting;
-  document.getElementById("passing").value = player.passing;
-  document.getElementById("dribbling").value = player.dribbling;
-  document.getElementById("defending").value = player.defending;
-  document.getElementById("physical").value = player.physical;
+  document.getElementById("nameEdit").value = player.name;
+  document.getElementById("photoEdit").value = player.photo;
+  document.getElementById("positionEdit").value = player.position;
+  document.getElementById("flagEdit").value = player.flag;
+  document.getElementById("logoEdit").value = player.logo;
+  document.getElementById("ratingEdit").value = player.rating;
+  document.getElementById("paceEdit").value = player.pace;
+  document.getElementById("shootingEdit").value = player.shooting;
+  document.getElementById("passingEdit").value = player.passing;
+  document.getElementById("dribblingEdit").value = player.dribbling;
+  document.getElementById("defendingEdit").value = player.defending;
+  document.getElementById("physicalEdit").value = player.physical;
+
+
+const changer = document.getElementById("changer");
+
+changer.addEventListener("click", function(e){
+e.preventDefault()
+  // Update the player's data in listeP
+  const updatedPlayer = {
+    ...player,
+    name: document.getElementById("nameEdit").value,
+    photo: document.getElementById("photoEdit").value,
+    position: document.getElementById("positionEdit").value,
+    flag: document.getElementById("flagEdit").value,
+    logo: document.getElementById("logoEdit").value,
+    rating: parseInt(document.getElementById("ratingEdit").value, 10),
+    pace: parseInt(document.getElementById("paceEdit").value, 10),
+    shooting: parseInt(document.getElementById("shootingEdit").value, 10),
+    passing: parseInt(document.getElementById("passingEdit").value, 10),
+    dribbling: parseInt(document.getElementById("dribblingEdit").value, 10),
+    defending: parseInt(document.getElementById("defendingEdit").value, 10),
+    physical: parseInt(document.getElementById("physicalEdit").value, 10),
+  };
+  listeP[playerIndex] = updatedPlayer;
+  console.table(listeP);
+  editplayerModal.classList.add("hidden");
+
+})
 }
 
-
+ 
+   
 
 // const handleUpdate = (player) => {
 //   // Pre-fill the modal form with player's existing data
