@@ -145,36 +145,21 @@ document.addEventListener("DOMContentLoaded", () => {
         newDiv.className =
           "bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2";
 
-        const button = document.querySelector(
-          'button[data-num="' + selected + '"]'
-        );
+        const button = document.querySelector('button[data-num="' + selected + '"]');
         button.innerHTML = "";
         newDiv.innerHTML = `
           <div class="flex">
-            <div
-              class="mr-[-10px] mt-5 text-xl font-bold text-black leading-3"
-            >
-              <p></p>
+            <div class="mr-[-10px] mt-5 text-xl font-bold text-black leading-3">
+              <p>${player.position}</p>
               <p class="text-lg">${player.rating}</p>
             </div>
             <img
               class="ml-[-9px] mt-1 mb-[-10px] z-10"
               src="${player.photo}"
-              style="
-                mask-image: linear-gradient(
-                  to top,
-                  rgba(0, 0, 0, 0) 0%,
-                  rgba(0, 0, 0, 1) 8%
-                );
-              "
-              width="100"
-              alt=""
-            />
+              style="mask-image: linear-gradient(to top,rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 8%);" width="100" alt=""/>
           </div>
           <h1 class="font-bold text-black z-20">${player.name}</h1>
-          <div
-            class="text-black text-[8px] flex gap-1 font-black justify-items-center"
-          >
+          <div class="text-black text-[8px] flex gap-1 font-black justify-items-center">
             <ul>
               <li>PAC</li>
               <li>${player.pace}</li>
@@ -201,18 +186,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   </ul>
                 </div>
                 <div class="flex gap-3 mt-1">
-                  <img
-                    src="${player.flag}"
-                    width="12"
-                    alt=""
-                  />
-                  <img
-                    src="${player.club}"
-                    width="12"
-                    alt=""
-                  />
-                </div>
-                `;
+                  <img src="${player.flag}" width="12" alt=""/>
+                  <img src="${player.logo}" width="12" alt=""/>
+                </div>`;
+
         button.appendChild(newDiv);
         // // close players list
         const playersModal = document.getElementById("playersModal");
@@ -221,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       playersContainer.appendChild(playerCard);
     });
-   
+
   }
 });
 
@@ -278,47 +255,3 @@ e.preventDefault()
 })
 }
 
- 
-   
-
-// const handleUpdate = (player) => {
-//   // Pre-fill the modal form with player's existing data
-
-//   // Open the modal
-//   const playerModal = document.getElementById("playerModal");
-//   playerModal.classList.remove("hidden");
-
-//   // Update the player's data on form submission
-//   const playerForm = document.getElementById("playerForm");
-//   playerForm.onsubmit = (event) => {
-//     event.preventDefault();
-
-//     // Update the player's data in listeP
-//     const updatedPlayer = {
-//       name: document.getElementById("name").value,
-//       photo: document.getElementById("photo").value,
-//       position: document.getElementById("position").value,
-//       flag: document.getElementById("flag").value,
-//       logo: document.getElementById("logo").value,
-//       rating: parseInt(document.getElementById("rating").value, 10),
-//       pace: parseInt(document.getElementById("pace").value, 10),
-//       shooting: parseInt(document.getElementById("shooting").value, 10),
-//       passing: parseInt(document.getElementById("passing").value, 10),
-//       dribbling: parseInt(document.getElementById("dribbling").value, 10),
-//       defending: parseInt(document.getElementById("defending").value, 10),
-//       physical: parseInt(document.getElementById("physical").value, 10),
-//     };
-
-//     // Replace the old player data with the updated data
-//     const playerIndex = listeP.findIndex((p) => p.name === player.name);
-//     if (playerIndex !== -1) {
-//       listeP[playerIndex] = updatedPlayer;
-//     }
-
-//     // Save the updated list to localStorage
-//     localStorage.setItem("players", JSON.stringify(listeP));
-
-//     alert("Player data updated successfully!");
-//     playerModal.classList.add("hidden");
-//   };
-// };
