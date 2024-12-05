@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // fermer le modal
   closeModal.addEventListener("click", () => {
     playerModal.classList.add("hidden");
+    
   });
 
   // gestion de l'ajout d'un joueur par la form
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+
   // fermer le modal des joueurs
   closePlayersModal.addEventListener("click", () => {
     playersModal.classList.add("hidden");
@@ -149,15 +151,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       playerCard.addEventListener("click", function () {
-        let res = listeP.find((item) => item == player.name);
-        const newDiv = document.createElement("div");
+       
+            let res = listeP.find((item) => item == player.name);
+            const newDiv = document.createElement("div");
+            newDiv.id = player.id;
+            newDiv.className =
+              "remplacant bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2";
 
-        newDiv.className =
-          "bg-[url('/images/iconecarte.webp')] bg-cover bg-no-repeat w-40 h-52 mb-12 justify-items-center pl-3 pr-3 pt-7 pb-2";
-
-        const button = document.querySelector('button[data-num="' + selected + '"]');
-        button.innerHTML = "";
-        newDiv.innerHTML = `
+            const button = document.querySelector(
+              'button[data-num="' + selected + '"]'
+            );
+            button.innerHTML = "";
+            newDiv.innerHTML = `
           <div class="flex">
             <div class="mr-[-10px] mt-5 text-xl font-bold text-black leading-3">
               <p>${player.position}</p>
@@ -199,11 +204,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   <img src="${player.flag}" width="12" alt=""/>
                   <img src="${player.logo}" width="12" alt=""/>
                 </div>`;
-        button.appendChild(newDiv);
-        // // close players list
-        const playersModal = document.getElementById("playersModal");
-        playersModal.classList.add("hidden");
-      });
+            button.appendChild(newDiv);
+            // // close players list
+            const playersModal = document.getElementById("playersModal");
+            playersModal.classList.add("hidden");
+          });
 
       playersContainer.appendChild(playerCard);
     });
@@ -275,3 +280,14 @@ e.preventDefault()
    remid.classList.add("hidden");
  }
                 
+
+ const joueurs = ["Joueur 1", "Joueur 2"];
+
+ joueurs.forEach((joueurs) => {
+      const player = document.createElement("div");
+      newDiv.innerHTML= '
+          <div>${joueurs}</div>
+      
+      '
+      
+ })
