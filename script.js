@@ -69,22 +69,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // gestion des boutons de position
   const positionButtons = document.querySelectorAll(
-    "button[id='GK'], button[id='LB'], button[id='CBL'], button[id='CBR'], button[id='RB'], button[id='CM'], button[id='CML'], button[id='CMR'], button[id='CF'], button[id='LWF'], button[id='RWF']"
+    "button[id='GK'], button[id='LB'], button[id='CBL'], button[id='CBR'], button[id='RB'], button[id='CM'], button[id='CML'], button[id='CMR'], button[id='CF'], button[id='LWF'], button[id='RWF'], button[id='re1'], button[id='re2'], button[id='re3'], button[id='re4'], button[id='re5'], button[id='re6'], button[id='re7'], button[id='re8']"
   );
 
+  
   let selected = null;
 
   positionButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selected = button.getAttribute("data-num");
       const position = button.id;
-      const filteredPlayers = listeP.filter(
-        (player) => player.position === position
-      );
-      renderPlayers(filteredPlayers, position);
+
+      
+      if (position.startsWith("re")) {
+        renderPlayers(listeP, position);
+      } else {
+        // filter players by position
+        const filteredPlayers = listeP.filter(
+          (player) => player.position === position
+        );
+        renderPlayers(filteredPlayers, position);
+      }
+
       playersModal.classList.remove("hidden");
     });
   });
+
 
   // fermer le modal des joueurs
   closePlayersModal.addEventListener("click", () => {
@@ -189,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
                   <img src="${player.flag}" width="12" alt=""/>
                   <img src="${player.logo}" width="12" alt=""/>
                 </div>`;
-
         button.appendChild(newDiv);
         // // close players list
         const playersModal = document.getElementById("playersModal");
@@ -198,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       playersContainer.appendChild(playerCard);
     });
-
+   
   }
 });
 
@@ -232,7 +241,7 @@ const changer = document.getElementById("changer");
 
 changer.addEventListener("click", function(e){
 e.preventDefault()
-  // Update the player's data in listeP
+  // modifier data du joueurs dans la listeP
   const updatedPlayer = {
     ...player,
     name: document.getElementById("nameEdit").value,
@@ -255,3 +264,14 @@ e.preventDefault()
 })
 }
 
+                  // afficher et fermer le modal
+                  
+ const btnrem = document.getElementById("remplace");
+ btnrem.addEventListener("click", () => {
+   const remid = document.getElementById("remid");
+   remid.classList.remove("hidden");
+ });
+ function sedmodal() {
+   remid.classList.add("hidden");
+ }
+                
